@@ -14,31 +14,6 @@ class FirstSpider(Spider):
 
     start_urls = ['https://epicentrk.ua/ua/shop/']
 
-    def parse_level1_category(self, level1_category):
-        this = CategoryItem()
-        this['name'] = ''.join(level1_category.css('.menu-link::text').extract()).strip()
-        this['url'] = self.start_urls[0] + level1_category.css('.menu-link').attrib['href'][1:]
-        this['image_src'] = None
-        this['parent_url'] = None
-
-        level2_categories = level1_category.css('.catalog-menu__level-2')
-        level2 = self.parse_level2_categories(level2_categories, this['url'])
-
-        return this, level2
-
-    def parse_level2_categories(self, level2_categories, parent_url):
-        categories = []
-        for category in level2_categories:
-            this = CategoryItem()
-            this['name'] = ''.join(category.css('::text').extract()).strip()
-            this['url'] = self.start_urls[0] + category.attrib['href'][1:]
-            this['image_src'] = category.css('img').attrib['data-src']
-            if this['image_src'][0] == '/':
-                this['image_src'] = self.start_urls[0] + this['image_src'][1:]
-            this['parent_url'] = parent_url
-            categories.append(this)
-        return categories
-
     @staticmethod
     def format_url(url):
         if re.search('/ua/shop/', url):
@@ -85,12 +60,4 @@ class FirstSpider(Spider):
                                               cb_kwargs=dict(parent_url=category['url'],))
 
     def parse(self, response):
-        # level1_categories = Selector(response).css('.catalog-menu__category').css('.catalog-menu__level-1')
-        # for level1_category in level1_categories:
-        #     this_category, level_2_categories = self.parse_level1_category(level1_category)
-        #     yield this_category
-        #     for category in level_2_categories:
-        #         yield category
-        #         yield response.follow(category['url'], callback=self.parse_category,
-        #                               cb_kwargs=dict(parent_url=category['url'],))
         yield from self.parse_category(response, None, False)

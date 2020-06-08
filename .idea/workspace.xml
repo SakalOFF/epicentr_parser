@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9af3142-d778-40aa-8679-27c66db2380d" name="Default Changelist" comment="" />
+    <list default="true" id="a9af3142-d778-40aa-8679-27c66db2380d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/parsing_train/spiders/category_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsing_train/spiders/category_spider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsing_train/spiders/product_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsing_train/spiders/product_spider.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +17,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1X2TvJc9ONZVVusrKiYGMA9VgdM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -94,7 +101,7 @@
       <workItem from="1590937778271" duration="125000" />
       <workItem from="1591280729609" duration="1267000" />
       <workItem from="1591284506697" duration="64715000" />
-      <workItem from="1591630345182" duration="9437000" />
+      <workItem from="1591630345182" duration="10216000" />
     </task>
     <servers />
   </component>

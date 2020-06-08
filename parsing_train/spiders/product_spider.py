@@ -16,6 +16,16 @@ class ProductSpider(Spider):
 
     start_urls = []
 
+    @staticmethod
+    def format_url(url):
+        if re.search('/ua/shop/', url):
+            return url
+        if re.search('/ua/', url):
+            return re.sub('/ua/', '/ua/shop/', url)
+        if re.search('/shop/', url):
+            return re.sub('/shop/', '/ua/shop/', url)
+        return url[:20] + '/ua/shop/' + url[21:]
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.site_url = 'https://epicentrk.ua/'
@@ -56,6 +66,7 @@ class ProductSpider(Spider):
             item['name'] = ''.join(product.css('.card__name').css('b.nc::text').extract()).strip()
             item['name'] = item['name'].replace('\xa0', ' ').strip()
             item['href'] = self.site_url + product.css('.card__name').css('a').attrib['href'][1:]
+            item['href'] = self.format_url(item['href'])
             item['price'] = ' '.join(product.css('.card__price-actual .card__price-sum').
                                      css('span::text').extract()).strip()
             item['old price'] = ' '.join(product.css('.card__price-label::text , .card__price-sum--old::text').
